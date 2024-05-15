@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bringing Data From API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+            text-align: center; /* Aligns content in the center */
+        }
+
+        h1 {
+            color: #333;
+            text-decoration: underline;
+            font-size: 24px; /* Reduced font size for the heading */
+        }
+
+        label {
+            font-size: 18px;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 10px; /* Add some space below the label */
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #chucks {
+            font-size: 16px; /* Reduced font size for the message */
+            font-style: italic; /* Makes the message italic */
+            color: #777;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+   
+    <h1>Bringing Data using API</h1>
+
+    <label>What's Chuck doing today?</label>
+    <button onclick="fetchChuckNorrisJoke()">Click here</button>
+    <p id="chucks"></p>
+
+    <script>
+        // Function to fetch data from the Chuck Norris API
+        function fetchChuckNorrisJoke() {
+            fetch('https://api.chucknorris.io/jokes/random?category=food')
+                .then(response => response.json())
+                .then(json => document.getElementById("chucks").innerHTML = '"' + json.value + '"')
+                .catch(error => console.log('Unable to reach URL: ' + error));
+        }
+
+        // Fetch a joke when the page loads
+        fetchChuckNorrisJoke();
+    </script>
+
+</body>
+</html>
